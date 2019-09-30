@@ -77,6 +77,9 @@
 		48227CA322B1ACE900EE88DD /* ChangePasswordLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48227CA222B1ACE900EE88DD /* ChangePasswordLoginViewController.swift */; };
 		5BBA9D2A232F68D100277C48 /* ValidateString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBA9D29232F68D100277C48 /* ValidateString.swift */; };
 		5BBA9DBD2332E62000277C48 /* ValidateStringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBA9DBC2332E62000277C48 /* ValidateStringTests.swift */; };
+		70D965352340E5CA006D7E95 /* FirebaseMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70D965342340E5CA006D7E95 /* FirebaseMessaging.framework */; };
+		70D965372340E5D2006D7E95 /* FirebaseAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70D965362340E5D2006D7E95 /* FirebaseAnalytics.framework */; };
+		70D965392340E839006D7E95 /* AppStoreReviewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D965382340E839006D7E95 /* AppStoreReviewManager.swift */; };
 		7C049F8920879CD5007A6213 /* LabelsUIPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C049F8820879CD4007A6213 /* LabelsUIPopover.swift */; };
 		7C049F8D2087AB5F007A6213 /* LabelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C049F8C2087AB5F007A6213 /* LabelTableViewCell.swift */; };
 		7C049F8F2087AB8A007A6213 /* LabelTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C049F8E2087AB8A007A6213 /* LabelTableViewCell.xib */; };
