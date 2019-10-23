@@ -93,9 +93,12 @@ class ConnectDeviceViewController: UIViewController{
         UIApplication.shared.isIdleTimerDisabled = false
         socket?.close()
         scheduleWorker.cancel()
-        cleanData()
-        presentingViewController?.navigationController?.popToRootViewController(animated: false)
-        dismiss(animated: true, completion: nil)
+        guard let myAccount = account else {
+            presentingViewController?.navigationController?.popToRootViewController(animated: false)
+            dismiss(animated: true, completion: nil)
+            return
+        }
+        goToMailbox(myAccount.compoundKey)
     }
     
     func cleanData(){
@@ -212,7 +215,7 @@ class ConnectDeviceViewController: UIViewController{
         DBManager.update(account: myAccount, jwt: signupData.token, refreshToken: refreshToken, regId: regId, identityB64: identityB64)
         let myContact = Contact()
         myContact.displayName = myAccount.name
-        myContact.email = "\(myAccount.username)\(Constants.domain)"
+        myContact.email = myAccount.email
         DBManager.store([myContact], account: myAccount)
         DBManager.createSystemLabels()
         let defaults = CriptextDefaults()

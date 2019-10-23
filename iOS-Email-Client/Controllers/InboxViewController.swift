@@ -403,6 +403,8 @@ class InboxViewController: UIViewController {
         self.tableView.reloadRows(at: [indexPath], with: .none)
         updateBadges()
         showNoThreadsView(mailboxData.reachedEnd && mailboxData.threads.isEmpty)
+        
+        AppStoreReviewManager.requestReviewIfAppropriate(viewController: self)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -533,7 +535,7 @@ extension InboxViewController: WebSocketManagerDelegate {
             self.handleLinkStart(linkData: data, account: account)
         case .LinkDismiss( _, _), .SyncDismiss( _, _):
             let topView = self.getTopView().presentedViewController
-            if(topView is SignInVerificationUIPopover){
+            if(topView is SignInVerificationUIPopover || topView is GenericDualAnswerUIPopover){
                 topView?.dismiss(animated: false, completion: nil)
             }
         case .NewEvent(let username, let domain):
@@ -597,6 +599,7 @@ extension InboxViewController {
     }
     
     @objc func getPendingEvents(_ refreshControl: UIRefreshControl?, completion: ((Bool) -> Void)? = nil) {
+        self.dequeueEvents()
         RequestManager.shared.getAccountEvents(accountId: myAccount.compoundKey, get: false)
         RequestManager.shared.getAccountsEvents()
     }
@@ -1225,7 +1228,7 @@ extension InboxViewController: InboxTableViewCellDelegate, UITableViewDelegate {
             emailDetailData.selectedLabel = selectedLabel
             emailDetailData.labels = Array(labelsSet)
             emailDetailData.subject = subject
-            emailDetailData.accountEmail = "\(myAccount.username)\(Constants.domain)"
+            emailDetailData.accountEmail = self.myAccount.email
             var emailState = Email.State()
             emailState.isExpanded = true
             emailDetailData.emailStates[lastEmailKey] = emailState
